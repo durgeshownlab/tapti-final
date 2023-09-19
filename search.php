@@ -69,6 +69,19 @@ if(mysqli_num_rows($result_product1)>0)
                 <div class="products-image">
                     <a href="shop-details.php?pid='.$row_product1['product_id'].'"><img src="images/products/'.$row_product1['product_image'].'" alt="image"></a>
 
+                    <ul class="products-action">
+                        <li>
+                            <a href="cart.php" class="add-cart-btn" data-tooltip="tooltip" data-placement="top" title="Add to Cart" data-product-id="'.$row_product1['product_id'].'">
+                                <i class="flaticon-shopping-cart"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="wish-list.php" class="add-wishlist-btn" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist" data-product-id="'.$row_product1['product_id'].'">
+                                <i class="flaticon-heart"></i>
+                            </a>
+                        </li>
+                    </ul>
+
                 </div>
 
                 <div class="products-content">

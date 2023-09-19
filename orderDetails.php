@@ -33,6 +33,7 @@ if(mysqli_num_rows($result_for_address)>0)
 ?>
 
 
+
 <main class="bg_gray">
     <div class="container">
 
@@ -41,6 +42,17 @@ if(mysqli_num_rows($result_for_address)>0)
                 <div class="col bg-white m-3 px-5 py-2 d-flex align-items-center justify-content-between">
                     <strong>Order Id &nbsp;</strong>
                     <span> <?= $row['order_id'] ?></span>
+                </div>
+                <div class="col bg-white m-3 px-5 py-2 d-flex align-items-center justify-content-between">
+                    <strong>Transaction Id &nbsp; </strong>
+                    <span> 
+                        <?php 
+                            if($row['transaction_id'])
+                            {
+                                echo $row['transaction_id'];
+                            } 
+                        ?>
+                    </span>
                 </div>
                 <div class="col bg-white m-3 px-5 py-2 d-flex align-items-center justify-content-between">
                     <strong>Order Date &nbsp; </strong>

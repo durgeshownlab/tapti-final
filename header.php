@@ -41,6 +41,9 @@
         <!-- Responsive CSS -->
 		<link rel="stylesheet" href="assets/css/responsive.css">
 
+        <!-- success page CSS -->
+		<link rel="stylesheet" href="assets/css/success.css">
+
         <!-- font awesome cdn link -->
         <script src="https://kit.fontawesome.com/ca7271c9b6.js" crossorigin="anonymous"></script>
 
@@ -147,13 +150,85 @@
                                         Home 
                                     </a>
                                 </li>
+
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        Account 
+                                        <i class='bx bx-chevron-down'></i>
+                                    </a>
+
+                                    <ul class="dropdown-menu">
+                                        <?php
+                                            if(isset($_SESSION['user_id']) && isset($_SESSION['email']))
+                                            {
+                                                echo '
+                                                <li class="nav-item">
+                                                    <a href="wishlist.php" class="nav-link">
+                                                        <i class="bx bx-heart px-2" style="font-size: 25px;"></i>
+                                                        Wishlist
+                                                    </a>
+                                                </li>
+                                                
+                                                <li class="nav-item">
+                                                    <a href="cart.php" class="nav-link">
+                                                        <i class="bx bx-cart px-2" style="font-size: 25px;"></i>
+                                                        Cart
+                                                    </a>
+                                                </li>
+                                                
+                                                <li class="nav-item">
+                                                    <a href="myOrders.php" class="nav-link">
+                                                        <i class="bx bx-store px-2" style="font-size: 25px;"></i>
+                                                        My Orders
+                                                    </a>
+                                                </li>
+
+                                                <li class="nav-item">
+                                                    <a href="myProfile.php" class="nav-link">
+                                                        <i class="bx bx-user px-2" style="font-size: 25px;"></i>
+                                                        My Profile
+                                                    </a>
+                                                </li>
+
+                                                <li class="nav-item">
+                                                    <a href="logout.php" class="nav-link">
+                                                        <i class="bx bx-exit px-2" style="font-size: 25px;"></i>
+                                                        Logout
+                                                    </a>
+                                                </li>
+                                                ';
+
+                                            }
+                                            else
+                                            {
+                                                echo '
+                                                <li class="nav-item">
+                                                    <a href="login.php" class="nav-link">
+                                                        Login
+                                                    </a>
+                                                </li>
+        
+                                                <li class="nav-item">
+                                                    <a href="register.php" class="nav-link">
+                                                        Register
+                                                    </a>
+                                                </li>';
+                                            }
+                                        ?>
+                                    </ul>
+                                </li>
                                 <li class="nav-item">
                                     <a href="about.php" class="nav-link">
                                         About Us 
                                     </a>
                                 </li>
-
                                 <li class="nav-item">
+                                    <a href="contact.php" class="nav-link">
+                                        Contact Us 
+                                    </a>
+                                </li>
+
+                                <!-- <li class="nav-item">
                                     <a href="#" class="nav-link">
                                         Pages 
                                         <i class='bx bx-chevron-down'></i>
@@ -205,72 +280,7 @@
                                             </a>
                                         </li>
 
-                                        <li class="nav-item">
-                                            <a href="#" class="nav-link">
-                                                Account 
-                                                <i class='bx bx-chevron-down'></i>
-                                            </a>
-        
-                                            <ul class="dropdown-menu">
-                                                <?php
-                                                    if(isset($_SESSION['user_id']) && isset($_SESSION['email']))
-                                                    {
-                                                        echo '
-                                                        <li class="nav-item">
-                                                            <a href="wishlist.php" class="nav-link">
-                                                                <i class="bx bx-heart px-2" style="font-size: 25px;"></i>
-                                                                Wishlist
-                                                            </a>
-                                                        </li>
-                                                        
-                                                        <li class="nav-item">
-                                                            <a href="cart.php" class="nav-link">
-                                                                <i class="bx bx-cart px-2" style="font-size: 25px;"></i>
-                                                                Cart
-                                                            </a>
-                                                        </li>
-                                                        
-                                                        <li class="nav-item">
-                                                            <a href="myOrders.php" class="nav-link">
-                                                                <i class="bx bx-store px-2" style="font-size: 25px;"></i>
-                                                                My Orders
-                                                            </a>
-                                                        </li>
-
-                                                        <li class="nav-item">
-                                                            <a href="myProfile.php" class="nav-link">
-                                                                <i class="bx bx-user px-2" style="font-size: 25px;"></i>
-                                                                My Profile
-                                                            </a>
-                                                        </li>
-
-                                                        <li class="nav-item">
-                                                            <a href="logout.php" class="nav-link">
-                                                                <i class="bx bx-exit px-2" style="font-size: 25px;"></i>
-                                                                Logout
-                                                            </a>
-                                                        </li>
-                                                        ';
-
-                                                    }
-                                                    else
-                                                    {
-                                                        echo '
-                                                        <li class="nav-item">
-                                                            <a href="login.php" class="nav-link">
-                                                                Login
-                                                            </a>
-                                                        </li>
-                
-                                                        <li class="nav-item">
-                                                            <a href="register.php" class="nav-link">
-                                                                Register
-                                                            </a>
-                                                        </li>';
-                                                    }
-                                                ?>
-                                            </ul>
-                                        </li>
+                                        
                                     
                                         <li class="nav-item">
                                             <a href="error-404.php" class="nav-link">
@@ -290,9 +300,9 @@
                                             </a>
                                         </li>
                                     </ul>
-                                </li>
+                                </li> -->
 
-                                <li class="nav-item">
+                                <!-- <li class="nav-item">
                                     <a href="#" class="nav-link">
                                         Services 
                                     </a>
@@ -347,7 +357,7 @@
                                     <a href="contact.php" class="nav-link">
                                         Contact
                                     </a>
-                                </li>
+                                </li> -->
                             </ul>
 
                             <div class="others-options d-flex align-items-center">

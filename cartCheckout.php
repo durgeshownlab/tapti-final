@@ -392,21 +392,9 @@
                                 </div>
 
                                 <div class="payment-box">
-                                    <div class="payment-method">
+                                    <div class="payment-method" id="paypal-button-container">
                                         
-                                        <p>
-                                            <input type="radio" id="paypal" name="radio-group">
-                                            <label for="paypal">Online Payment</label>
-                                        </p>
-
-                                        <p>
-                                            <input type="radio" id="cash-on-delivery" name="radio-group">
-                                            <label for="cash-on-delivery">Cash on Delivery</label>
-                                        </p>
                                     </div>
-                                    <a href="#" class="default-btn" id="place-order-btn">
-                                        Place Order
-                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -417,3 +405,73 @@
 		<!-- End Checkout Area -->
         
         <?php include('footer.php'); ?>
+
+        
+<!-- paypal cdn  -->
+<script src="https://www.paypal.com/sdk/js?client-id=AWaGDsNdWv7up26-Slro1Tqk3jkZCuz5ed6uRGb30pSmlaEJk7V-JPJPNmqx_d4crrALPB2Zr6Xm88T6"></script>
+
+<script>
+
+paypal.Buttons({
+    onClick()
+    {
+        let address_id=$('input[name="address-id"]:checked').val();
+        let product_id=$('#product-id').val();
+        if($('input[name="address-id"]:checked').length === 0)
+        {
+            alert("Please Select Address");
+            return false;
+        }
+        else if(product_id=='')
+        {
+            alert("Something went wrong Please refresh the page");
+            return false;
+        }
+    },
+    createOrder: (data, actions) => {
+        return actions.order.create({
+            purchase_units: [{
+                amount: {
+                    value: '<?= $total_price ?>'
+                }
+            }]
+        });
+    },
+    onApprove: (data, actions) => {
+        return actions.order.capture().then(function(orderData){
+            // console.log('capture result', orderData, JSON.stringify(orderData, null, 2));
+            const transaction = orderData.purchase_units[0].payments.captures[0];
+            // alert(`Transaction  ${transaction.status}: ${transaction.id} \n\n See the console `)
+
+            let address_id=$('input[name="address-id"]:checked').val();
+            let product_id=$('#product-id').val();
+            $.ajax({
+                url: "api/storeOrderDetailsForCart.php",
+                type: "POST",
+                data: {address_id: address_id, transaction_id: transaction.id},
+                success: function(data)
+                {
+                    data=JSON.parse(data);
+                    let details=btoa(JSON.stringify(data.data));
+                    // let details=data.data;
+                    if(data.status==0)
+                    {
+                        console.log("Failed to Order");
+                    }
+                    else if(data.status==1)
+                    {
+                        console.log("Successfully ordered");
+                        window.location.href =`successForCart.php?data=${details}`;
+                    }
+                    else
+                    {
+                        console.log(data);
+                    }
+                }
+            });
+        });
+    },
+  }).render("#paypal-button-container");
+
+</script>
+

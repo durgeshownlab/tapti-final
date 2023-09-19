@@ -24,7 +24,7 @@
                                 </tr>
                             </thead>
                             <tbody>';
-    $sql="select * from products where quantity<2 and is_deleted=0";
+    $sql="select * from products where quantity<3 and is_deleted=0";
     $result=mysqli_query($conn, $sql);
 
     if(mysqli_num_rows($result)>0)

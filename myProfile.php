@@ -26,6 +26,25 @@ if(mysqli_num_rows($result)>0)
 
 ?>
 
+ <!-- Start Page Banner -->
+ <div class="page-banner-area item-bg2">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="container">
+                <div class="page-banner-content">
+                    <h2>My Profile</h2>
+                    <ul>
+                        <li>
+                            <a href="index.php">Home</a>
+                        </li>
+                        <li>Profile</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page Banner -->
 
 <main class="bg_gray">
     <div class="container">

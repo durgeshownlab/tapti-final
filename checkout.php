@@ -227,99 +227,6 @@
 
                         ?>
 
-                                    <!-- <div class="col-lg-12 col-md-12">
-                                        <div class="form-group">
-                                            <input type="radio" id="cash-on-delivery" name="radio-group">
-                                            <label for="cash-on-delivery">Cash on Delivery</label>
-                                        </div>
-                                    </div> -->
-
-                                    <!-- <div class="col-lg-12 col-md-12">
-                                        <div class="form-group">
-										    <label>Country <span class="required">*</span></label>
-                                            <div class="select-box">
-                                                <select class="form-control">
-                                                    <option value="5">United Arab Emirates</option>
-                                                    <option value="1">China</option>
-                                                    <option value="2">United Kingdom</option>
-                                                    <option value="0">Germany</option>
-                                                    <option value="3">France</option>
-                                                    <option value="4">Japan</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6">
-                                        <div class="form-group">
-                                            <label>First Name <span class="required">*</span></label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6">
-                                        <div class="form-group">
-                                            <label>Last Name <span class="required">*</span></label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12">
-                                        <div class="form-group">
-                                            <label>Company Name</label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-6">
-                                        <div class="form-group">
-                                            <label>Address <span class="required">*</span></label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-6">
-                                        <div class="form-group">
-                                            <label>Town / City <span class="required">*</span></label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6">
-                                        <div class="form-group">
-                                            <label>State / County <span class="required">*</span></label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6">
-                                        <div class="form-group">
-                                            <label>Postcode / Zip <span class="required">*</span></label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6">
-                                        <div class="form-group">
-                                            <label>Email Address<span class="required">*</span></label>
-                                            <input type="email" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6">
-                                        <div class="form-group">
-                                            <label>Phone <span class="required">*</span></label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12">
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="create-an-account">
-                                            <label class="form-check-label" for="create-an-account">Create an account?</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12">
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="ship-different-address">
-                                            <label class="form-check-label" for="ship-different-address">Ship to a different address?</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12">
-                                        <div class="form-group">
-                                            <textarea name="notes" id="notes" cols="30" rows="5" placeholder="Order Notes" class="form-control"></textarea>
-                                        </div>
-                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -356,6 +263,7 @@
                                             ?>
                                             <tr>
                                                 <td class="product-name d-flex justify-content-between">
+                                                    <input type="hidden" value="<?= $row_for_product['product_id'] ?>" id="product-id">
                                                     <a href="shop-details.php?pid=<?=$row_for_product['product_id']?>"><?= $row_for_product['product_name'] ?></a>
                                                     <span><?= $row['quantity'] ?>x</span>
                                                 </td>
@@ -376,7 +284,7 @@
                                                     <span><b>Order Total</b></span>
                                                 </td>
                                                 <td class="product-subtotal">
-                                                    <span class="subtotal-amount">&#8377; <?= number_format($row['total_price']) ?></span>
+                                                    <span class="subtotal-amount">$ <?= number_format($row['total_price']) ?></span>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -384,21 +292,12 @@
                                 </div>
 
                                 <div class="payment-box">
-                                    <div class="payment-method">
+                                    <div class="payment-method" id="paypal-button-container">
                                         
-                                        <p>
-                                            <input type="radio" id="paypal" name="radio-group">
-                                            <label for="paypal">Online Payment</label>
-                                        </p>
+                                        
 
-                                        <p>
-                                            <input type="radio" id="cash-on-delivery" name="radio-group">
-                                            <label for="cash-on-delivery">Cash on Delivery</label>
-                                        </p>
                                     </div>
-                                    <a href="#" class="default-btn" id="place-order-btn">
-                                        Place Order
-                                    </a>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -409,3 +308,69 @@
 		<!-- End Checkout Area -->
         
         <?php include('footer.php'); ?>
+
+<!-- paypal cdn  -->
+<script src="https://www.paypal.com/sdk/js?client-id=AWaGDsNdWv7up26-Slro1Tqk3jkZCuz5ed6uRGb30pSmlaEJk7V-JPJPNmqx_d4crrALPB2Zr6Xm88T6"></script>
+
+<script>
+
+paypal.Buttons({
+    onClick()
+    {
+        let address_id=$('input[name="address-id"]:checked').val();
+        let product_id=$('#product-id').val();
+        if($('input[name="address-id"]:checked').length === 0)
+        {
+            alert("Please Select Address");
+            return false;
+        }
+        else if(product_id=='')
+        {
+            alert("Something went wrong Please refresh the page");
+            return false;
+        }
+    },
+    createOrder: (data, actions) => {
+        return actions.order.create({
+            purchase_units: [{
+                amount: {
+                    value: '<?= $row['total_price'] ?>'
+                }
+            }]
+        });
+    },
+    onApprove: (data, actions) => {
+        return actions.order.capture().then(function(orderData){
+            // console.log('capture result', orderData, JSON.stringify(orderData, null, 2));
+            const transaction = orderData.purchase_units[0].payments.captures[0];
+            // alert(`Transaction  ${transaction.status}: ${transaction.id} \n\n See the console `)
+
+            let address_id=$('input[name="address-id"]:checked').val();
+            let product_id=$('#product-id').val();
+            $.ajax({
+                url: "api/storeOrderDetails.php",
+                type: "POST",
+                data: {product_id: product_id, address_id: address_id, transaction_id: transaction.id},
+                success: function(data)
+                {
+                    data=JSON.parse(data);
+                    if(data.status==0)
+                    {
+                        console.log("Failed to Order");
+                    }
+                    else if(data.status==1)
+                    {
+                        console.log("Successfully ordered");
+                        window.location.href =`success.php?orderId=${data.order_id}`;
+                    }
+                    else
+                    {
+                        console.log(data);
+                    }
+                }
+            });
+        });
+    },
+  }).render("#paypal-button-container");
+
+</script>

@@ -359,7 +359,7 @@ if(mysqli_num_rows($result_product1)>0)
                                 style="color: #ff7804; font-size: 2.5rem; position:relative; top: 1.6rem;">❞</span>
                         </p>
                         <div class="image">
-                            <img src="assets/img/client/Amit.jpg" alt="">
+                            <img src="assets/img/client/amit.jpg" alt="">
 
                         </div>
                         <div class="details pt-2">
@@ -425,7 +425,7 @@ if(mysqli_num_rows($result_product1)>0)
                                 style="color: #ff7804; font-size: 2.5rem; position:relative; top: 1.6rem;">❞</span>
                         </p>
                         <div class="image">
-                            <img src="assets/img/client/Amit.jpg" alt="">
+                            <img src="assets/img/client/suneha.jpg" alt="">
 
                         </div>
                         <div class="details pt-2">

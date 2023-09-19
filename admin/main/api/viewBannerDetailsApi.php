@@ -20,8 +20,8 @@
             </div>
             <div class="modal-body">
                 <div class="d-flex">
-                    <div class="">
-                        <img src="../../images/banner/'.$row['banner_image'].'" class="img-fluid rounded" alt="" style="width: 200px; height: auto; max-height: 200px; max-width: 200px;">
+                    <div class="col">
+                        <img src="../../images/banner/'.$row['banner_image'].'" class="img-fluid rounded" alt="" style="width: 100%; height: auto; max-height: 200px; max-width: 100%;">
                     </div>
                     <div class="col">
                         <div class="row">

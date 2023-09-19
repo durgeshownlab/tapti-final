@@ -56,7 +56,7 @@ $output .='
         <div class="col">
             <div class="row">
                 <div class="col">
-                    <img src="../../images/products/'.$row_for_product['product_image'].'" alt="" style="width: 100px; height: auto;">
+                    <img src="../../images/products/'.$row_for_product['product_image'].'" alt="" style="width: 100%; height: auto;">
                 </div>
 
                 <div class="col">

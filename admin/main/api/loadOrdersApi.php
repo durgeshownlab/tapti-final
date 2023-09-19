@@ -11,7 +11,7 @@
                 <div class="filter-list-container">
                     <div class="filter-list">
                         <div class="payment-mode-filter">
-                            <p class="bg-secondary">Payment Mode</p>
+                            <p class="bg-primary">Payment Mode</p>
                             <div class="filter-item">
                                 <input type="checkbox" name="payment-mode[]" id="pod-filter" value="pod">
                                 <label for="pod-filter">POD</label>
@@ -24,7 +24,7 @@
                         </div>
 
                         <div class="delivery-status-filter">
-                            <p class="bg-secondary">Delivery Status</p>
+                            <p class="bg-primary">Delivery Status</p>
                             <div class="filter-item">
                                 <input type="checkbox" name="delivery-status[]" id="order-placed-filter" value="order placed">
                                 <label for="order-placed-filter">Order Placed</label>
@@ -60,7 +60,7 @@
                 <i class="fa-solid fa-sort"></i>&nbsp;Sort
                 <div class="sort-list-container">
                     <div class="sort-list">
-                        <p class="bg-secondary">Sort By</p>
+                        <p class="bg-primary">Sort By</p>
 
                         <div class="sort-item">
                             <input type="radio" name="sort-by" id="default-sort" value="default" checked>

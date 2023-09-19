@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 14, 2023 at 08:20 AM
+-- Generation Time: Sep 19, 2023 at 02:38 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `e_shop_baba`
+-- Database: `tapti_final`
 --
 
 -- --------------------------------------------------------
@@ -71,6 +71,15 @@ CREATE TABLE `banners` (
   `time_stamp` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `banners`
+--
+
+INSERT INTO `banners` (`banner_id`, `banner_name`, `banner_image`, `is_deleted`, `time_stamp`) VALUES
+(2, 'Mellophone', '6502aeb3041b86.39974210.jpg', 0, '2023-09-14 06:56:51'),
+(3, 'Sitar Customized', '6502aed33f0305.79982315.jpg', 0, '2023-09-14 06:57:23'),
+(4, 'Saxophone', '6502aeea8fa025.02672567.jpg', 0, '2023-09-14 06:57:46');
+
 -- --------------------------------------------------------
 
 --
@@ -92,16 +101,16 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`cart_id`, `user_id`, `product_id`, `quantity`, `total_price`, `is_deleted`, `timestamp`) VALUES
-(1, 17, 8, 1, 9500, 0, '2023-08-19 13:02:55'),
-(35, 1, 9, 1, 4650, 0, '2023-09-13 12:57:29'),
-(36, 1, 12, 1, 4562, 0, '2023-09-14 04:57:04'),
-(39, 23, 1, 2, 19998, 0, '2023-09-14 05:13:40'),
-(40, 23, 2, 2, 17998, 0, '2023-09-14 05:18:46'),
-(41, 23, 12, 1, 4562, 0, '2023-09-14 05:18:47'),
-(42, 23, 9, 2, 9300, 0, '2023-09-14 05:18:48'),
-(43, 23, 3, 1, 4999, 0, '2023-09-14 05:19:25'),
-(44, 23, 8, 2, 19000, 0, '2023-09-14 05:19:36'),
-(46, 9, 3, 2, 9998, 0, '2023-09-14 06:10:02');
+(3, 23, 4, 7, 315, 0, '2023-09-14 11:51:07'),
+(4, 23, 3, 3, 17598, 0, '2023-09-14 11:51:11'),
+(5, 23, 6, 2, 9110, 0, '2023-09-14 11:51:16'),
+(6, 23, 2, 6, 45360, 0, '2023-09-14 11:51:18'),
+(11, 23, 5, 8, 4176, 0, '2023-09-15 04:13:49'),
+(13, 23, 8, 3, 132, 0, '2023-09-16 04:40:56'),
+(16, 9, 4, 2, 90, 0, '2023-09-18 11:36:21'),
+(17, 9, 8, 2, 88, 0, '2023-09-18 11:36:23'),
+(21, 9, 10, 3, 1065, 0, '2023-09-19 04:42:57'),
+(23, 9, 2, 2, 15120, 0, '2023-09-19 07:45:44');
 
 -- --------------------------------------------------------
 
@@ -122,9 +131,10 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id`, `name`, `image`, `is_deleted`, `timestamp`) VALUES
-(1, 'BRASS INSTRUMENTS', '64e0698c4260b4.09290644.png', 0, '2023-08-19 07:04:44'),
-(2, 'SILVER INSTRUMENTS', '64e069a961dee7.76341230.png', 0, '2023-08-19 07:05:13'),
-(3, 'WOODEN INSTRUMENTS', '64e069cdef3b56.71217139.png', 0, '2023-08-19 07:05:49');
+(1, 'BRASS INSTRUMENTS', '6502ca0281f636.20916674.jpg', 0, '2023-08-19 07:04:44'),
+(2, 'SILVER INSTRUMENTS', '6502ca1456b453.81364102.jpg', 0, '2023-08-19 07:05:13'),
+(3, 'WOODEN INSTRUMENTS', '6502ca1ac80eb2.18850162.jpg', 0, '2023-08-19 07:05:49'),
+(4, 'Drum', '6502ca801f3428.47149417.jpg', 0, '2023-09-14 08:55:28');
 
 -- --------------------------------------------------------
 
@@ -175,7 +185,30 @@ INSERT INTO `orders` (`id`, `order_id`, `user_id`, `product_id`, `address_id`, `
 (1, '1692598502f0d38c08', 9, 3, 23, NULL, 1, 4999, 4999, 'pod', 'pending', 'canceled', 'canceled', '[{\"event_name\":\"order placed\",\"Date\":\"21-08-2023\",\"Time\":\"11:45:02\"},{\"event_name\":\"order canceled\",\"Date\":\"21-08-2023\",\"Time\":\"12:04:59\"}]', '2023-08-21 11:45:02', 0, 1, '2023-08-21 06:15:02'),
 (2, '1692598502647f5899', 9, 9, 23, NULL, 1, 4650, 4650, 'pod', 'pending', 'order placed', 'pending', '[{\"event_name\":\"order placed\",\"Date\":\"21-08-2023\",\"Time\":\"11:45:02\"}]', '2023-08-21 11:45:02', 0, 0, '2023-08-21 06:15:02'),
 (3, '1692599353e7c70558', 9, 2, 20, NULL, 1, 8999, 8999, 'pod', 'pending', 'canceled', 'canceled', '[{\"event_name\":\"order placed\",\"Date\":\"21-08-2023\",\"Time\":\"11:59:13\"},{\"event_name\":\"order confirmed\",\"Date\":\"21-08-2023\",\"Time\":\"12:04:49\"},{\"event_name\":\"order canceled\",\"Date\":\"21-08-2023\",\"Time\":\"12:06:27\"}]', '2023-08-21 11:59:13', 0, 1, '2023-08-21 06:29:13'),
-(4, '1692783748a5a09c7f', 9, 3, 20, NULL, 1, 4999, 4999, 'pod', 'pending', 'canceled', 'canceled', '[{\"event_name\":\"order placed\",\"Date\":\"23-08-2023\",\"Time\":\"15:12:28\"},{\"event_name\":\"order canceled\",\"Date\":\"11-09-2023\",\"Time\":\"14:29:05\"}]', '2023-08-23 15:12:28', 0, 1, '2023-08-23 09:42:28');
+(4, '1692783748a5a09c7f', 9, 3, 20, NULL, 1, 4999, 4999, 'pod', 'pending', 'canceled', 'canceled', '[{\"event_name\":\"order placed\",\"Date\":\"23-08-2023\",\"Time\":\"15:12:28\"},{\"event_name\":\"order canceled\",\"Date\":\"11-09-2023\",\"Time\":\"14:29:05\"}]', '2023-08-23 15:12:28', 0, 1, '2023-08-23 09:42:28'),
+(5, '1695035916d5cb82ea', 9, 10, 24, '55213276640948639', 1, 355, 355, 'online', 'success', 'order placed', 'pending', '[{\"event_name\":\"order placed\",\"Date\":\"18-09-2023\",\"Time\":\"16:48:36\"}]', '2023-09-18 16:48:36', 0, 0, '2023-09-18 11:18:36'),
+(6, '16950360217ca9df19', 9, 10, 24, '1JV744292P324200S', 1, 355, 355, 'online', 'success', 'order placed', 'pending', '[{\"event_name\":\"order placed\",\"Date\":\"18-09-2023\",\"Time\":\"16:50:21\"}]', '2023-09-18 16:50:21', 0, 0, '2023-09-18 11:20:21'),
+(7, '1695037131285d1a47', 9, 10, 23, '8N188221LE420605E', 1, 355, 355, 'online', 'success', 'canceled', 'canceled', '[{\"event_name\":\"order placed\",\"Date\":\"18-09-2023\",\"Time\":\"17:08:51\"},{\"event_name\":\"order canceled\",\"Date\":\"18-09-2023\",\"Time\":\"17:15:17\"}]', '2023-09-18 17:08:51', 0, 1, '2023-09-18 11:38:51'),
+(8, '1695037131dbd99b3c', 9, 4, 23, '8N188221LE420605E', 2, 45, 90, 'online', 'success', 'order placed', 'pending', '[{\"event_name\":\"order placed\",\"Date\":\"18-09-2023\",\"Time\":\"17:08:51\"}]', '2023-09-18 17:08:51', 0, 0, '2023-09-18 11:38:51'),
+(9, '16950371316badc3c3', 9, 8, 23, '8N188221LE420605E', 1, 44, 44, 'online', 'success', 'order placed', 'pending', '[{\"event_name\":\"order placed\",\"Date\":\"18-09-2023\",\"Time\":\"17:08:51\"}]', '2023-09-18 17:08:51', 0, 0, '2023-09-18 11:38:51'),
+(10, '1695037587327125ee', 9, 4, 20, '5CM29440S0025754J', 2, 45, 90, 'online', 'success', 'order placed', 'pending', '[{\"event_name\":\"order placed\",\"Date\":\"18-09-2023\",\"Time\":\"17:16:27\"}]', '2023-09-18 17:16:27', 0, 0, '2023-09-18 11:46:27'),
+(11, '16950375873fbbb8e4', 9, 8, 20, '5CM29440S0025754J', 2, 44, 88, 'online', 'success', 'order placed', 'pending', '[{\"event_name\":\"order placed\",\"Date\":\"18-09-2023\",\"Time\":\"17:16:27\"}]', '2023-09-18 17:16:27', 0, 0, '2023-09-18 11:46:27'),
+(12, '169503767067972996', 9, 4, 24, '41L15928GK807101L', 2, 45, 90, 'online', 'success', 'order placed', 'pending', '[{\"event_name\":\"order placed\",\"Date\":\"18-09-2023\",\"Time\":\"17:17:50\"}]', '2023-09-18 17:17:50', 0, 0, '2023-09-18 11:47:50'),
+(13, '1695037670aa126d7b', 9, 8, 24, '41L15928GK807101L', 2, 44, 88, 'online', 'success', 'order placed', 'pending', '[{\"event_name\":\"order placed\",\"Date\":\"18-09-2023\",\"Time\":\"17:17:50\"}]', '2023-09-18 17:17:50', 0, 0, '2023-09-18 11:47:50'),
+(14, '1695040906b46ed69b', 9, 5, 23, '77U505668R758710X', 1, 522, 522, 'online', 'success', 'canceled', 'canceled', '[{\"event_name\":\"order placed\",\"Date\":\"18-09-2023\",\"Time\":\"18:11:46\"},{\"event_name\":\"order canceled\",\"Date\":\"18-09-2023\",\"Time\":\"18:13:24\"}]', '2023-09-18 18:11:46', 0, 1, '2023-09-18 12:41:46'),
+(15, '16950410451849e090', 9, 5, 24, '2DA29502NC2662318', 1, 522, 522, 'online', 'success', 'order placed', 'pending', '[{\"event_name\":\"order placed\",\"Date\":\"18-09-2023\",\"Time\":\"18:14:05\"}]', '2023-09-18 18:14:05', 0, 0, '2023-09-18 12:44:05'),
+(16, '16950412233a67ec03', 9, 4, 23, '5C9278766V964611A', 2, 45, 90, 'online', 'success', 'order placed', 'pending', '[{\"event_name\":\"order placed\",\"Date\":\"18-09-2023\",\"Time\":\"18:17:03\"}]', '2023-09-18 18:17:03', 0, 0, '2023-09-18 12:47:03'),
+(17, '169504122354ceb909', 9, 8, 23, '5C9278766V964611A', 2, 44, 88, 'online', 'success', 'order placed', 'pending', '[{\"event_name\":\"order placed\",\"Date\":\"18-09-2023\",\"Time\":\"18:17:03\"}]', '2023-09-18 18:17:03', 0, 0, '2023-09-18 12:47:03'),
+(18, '1695041630c5ee2cbf', 9, 4, 23, '0VW29141A7347720H', 2, 45, 90, 'online', 'success', 'order placed', 'pending', '[{\"event_name\":\"order placed\",\"Date\":\"18-09-2023\",\"Time\":\"18:23:50\"}]', '2023-09-18 18:23:50', 0, 0, '2023-09-18 12:53:50'),
+(19, '169504163087f6e6a8', 9, 8, 23, '0VW29141A7347720H', 2, 44, 88, 'online', 'success', 'order placed', 'pending', '[{\"event_name\":\"order placed\",\"Date\":\"18-09-2023\",\"Time\":\"18:23:50\"}]', '2023-09-18 18:23:50', 0, 0, '2023-09-18 12:53:50'),
+(20, '169504179254341bae', 9, 4, 28, '0H064427TE816850J', 2, 45, 90, 'online', 'success', 'order placed', 'pending', '[{\"event_name\":\"order placed\",\"Date\":\"18-09-2023\",\"Time\":\"18:26:32\"}]', '2023-09-18 18:26:32', 0, 0, '2023-09-18 12:56:32'),
+(21, '1695041792abb76709', 9, 8, 28, '0H064427TE816850J', 2, 44, 88, 'online', 'success', 'order placed', 'pending', '[{\"event_name\":\"order placed\",\"Date\":\"18-09-2023\",\"Time\":\"18:26:32\"}]', '2023-09-18 18:26:32', 0, 0, '2023-09-18 12:56:32'),
+(22, '1695096821904aedfe', 9, 1, 23, '5K177196DH109981W', 1, 4999, 4999, 'online', 'success', 'order placed', 'pending', '[{\"event_name\":\"order placed\",\"Date\":\"19-09-2023\",\"Time\":\"09:43:41\"}]', '2023-09-19 09:43:41', 0, 0, '2023-09-19 04:13:41'),
+(23, '1695098637be7cedee', 9, 10, 24, '93H956325G613223X', 2, 355, 710, 'online', 'success', 'order placed', 'pending', '[{\"event_name\":\"order placed\",\"Date\":\"19-09-2023\",\"Time\":\"10:13:57\"}]', '2023-09-19 10:13:57', 0, 0, '2023-09-19 04:43:57'),
+(24, '16950987349a743282', 9, 5, 20, '8FY40944DR826025B', 1, 522, 522, 'online', 'success', 'order placed', 'pending', '[{\"event_name\":\"order placed\",\"Date\":\"19-09-2023\",\"Time\":\"10:15:34\"}]', '2023-09-19 10:15:34', 0, 0, '2023-09-19 04:45:34'),
+(25, '169509926500a2b1c5', 9, 4, 23, '2EH11205YE5231846', 2, 45, 90, 'online', 'success', 'order placed', 'pending', '[{\"event_name\":\"order placed\",\"Date\":\"19-09-2023\",\"Time\":\"10:24:25\"}]', '2023-09-19 10:24:25', 0, 0, '2023-09-19 04:54:25'),
+(26, '16950992658fa72262', 9, 8, 23, '2EH11205YE5231846', 2, 44, 88, 'online', 'success', 'order placed', 'pending', '[{\"event_name\":\"order placed\",\"Date\":\"19-09-2023\",\"Time\":\"10:24:25\"}]', '2023-09-19 10:24:25', 0, 0, '2023-09-19 04:54:25'),
+(27, '16950992654e0725b5', 9, 10, 23, '2EH11205YE5231846', 2, 355, 710, 'online', 'success', 'order placed', 'pending', '[{\"event_name\":\"order placed\",\"Date\":\"19-09-2023\",\"Time\":\"10:24:25\"}]', '2023-09-19 10:24:25', 0, 0, '2023-09-19 04:54:25');
 
 -- --------------------------------------------------------
 
@@ -201,18 +234,17 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `product_name`, `product_image`, `product_price`, `product_desc`, `sub_category_id`, `base_price`, `quantity`, `is_deleted`, `timestamp`) VALUES
-(1, 'brass bugle', '64e073641af562.17849095.png', 9999, ' The Brand New Execellent Bb Low Pitch Tuneable Army Bugle,Militaria Bugle,School Bugle,Scout Bugle is made of good quality brass and materials and well finished.our all musical instruments have good quality components,professional sound and technically approved by the musicians world wide.', 1, 0, 0, 0, '2023-08-19 07:46:44'),
-(2, 'silver baritone', '64e0831ecbd083.59662955.png', 8999, 'OUR PRODUCT QUALITY ATTENTION we believe that no product is complete without putting it in to practical experience. This is the main strength of our products. All our products like Trombone, Euphonium, Bugel Cooper, Trumpet, Pocket Cornet, Tenor Core, French Horn and other Musical instruments are well accepted in the market mainly because of the quality it maintains all through these years.', 6, 0, 0, 0, '2023-08-19 08:53:50'),
-(3, 'brass flugel horn', '64e08c25a0c4c9.58680185.png', 4999, 'brass flugel horn', 2, 0, 0, 0, '2023-08-19 09:32:21'),
-(4, 'brass trombone', '64e09fbdcc82a6.10984914.png', 6325, 'The modern bass trombone is pitched in B  It is identical in length to the tenor trombone, but has a wider bore and a larger bell to aid in the production of a fuller, deeper tone in the lower register.', 3, 0, 0, 1, '2023-08-19 10:55:57'),
-(5, 'brass trombone', '64e0a5b5af5e56.51907627.png', 2650, 'The modern bass trombone is pitched in B  It is identical in length to the tenor trombone, but has a wider bore and a larger bell to aid in the production of a fuller, deeper tone in the lower register', 3, 0, 0, 0, '2023-08-19 11:21:25'),
-(6, 'brass trumpet', '64e0a8b71d36c1.54933892.png', 4639, 'Owing to the rich industrial experience and expertise in this business, we are involved in providing Brass', 4, 0, 0, 0, '2023-08-19 11:34:15'),
-(7, 'silver bugle', '64e0ae2b3a9352.32519315.png', 4650, '\r\nSilver Bugle is becoming a most demandable instrument nowadays, it demand  increase in School functions, Marriage Band, Government sector supply.', 7, 0, 0, 0, '2023-08-19 11:57:31'),
-(8, 'silver Euphonium', '64e0afdf489d98.53055345.png', 9500, 'It is made of high quality silver under the guidance of experienced workers Beautifully designed with great sound quality Comes with a durable carry case , and high quality brass mouthpieceIt has smooth functioning valves with comfortable pearl inlaid buttons which are Easy to learn and paly', 8, 0, 0, 0, '2023-08-19 12:04:47'),
-(9, 'silver mellophone', '64e0b143c5c495.28079827.png', 4650, 'Backed ourselves with a crew of dexterous workers, we are readily affianced in providing a distinctive plethora of Mellophone Horn Silver. In conformism with the advancement taking place in the market, these presented products are developed with utmost excellence', 10, 0, 0, 0, '2023-08-19 12:10:43'),
-(10, 'silver pocket trumpet', '64e0b2c5e074d7.41313756.png', 9500, 'The tone of Pocket Trumpet is the popular tone which is suitable for both Beginners & Experts, such as students, music fan, band performance and so on', 11, 0, 0, 0, '2023-08-19 12:17:09'),
-(11, 'dilruba', '64e0b3b609f6b0.34476396.png', 52522, 'Special type Dilruba professional type generally use by Raggis wtth adjustable horse hair bow in spl.fibre box.Available in 2 colors.', 12, 0, 0, 0, '2023-08-19 12:21:10'),
-(12, 'Munda Sitar', '64e0b57810f8e0.58093341.png', 4562, 'We are one of the trusted companies of Showpiece sitar. Our products are enormously admired in the market owing to their top features.', 13, 0, 0, 0, '2023-08-19 12:28:40');
+(1, 'Brass Flugel Horn', '6502cf1b409637.33984379.jpg', 4999, 'Brass Flugel Horn', 2, 6999, 3, 0, '2023-09-14 09:15:07'),
+(2, 'Clarinet Flute', '6502cfb4abca27.10272403.jpg', 7560, 'The Brand New Execellent Bb Low Pitch Tuneable Army Bugle,militaria Bugle,school Bugle,scout Bugle Is Made Of Good Quality Brass And Materials And Well Finished.our All Musical Instruments Have Good Quality Components,professional Sound And Technically Approved By The Musicians World Wide.', 6, 9999, 100, 0, '2023-09-14 09:17:40'),
+(3, 'Brass Trombone', '6502d054d46c65.07902791.jpg', 5866, 'The Modern Bass Trombone Is Pitched In B It Is Identical In Length To The Tenor Trombone, But Has A Wider Bore And A Larger Bell To Aid In The Production Of A Fuller, Deeper Tone In The Lower Register.', 3, 6999, 155, 0, '2023-09-14 09:20:20'),
+(4, 'Brass Trombone', '6502d0f06af9a7.84634334.jpg', 45, 'The Modern Bass Trombone Is Pitched In B It Is Identical In Length To The Tenor Trombone, But Has A Wider Bore And A Larger Bell To Aid In The Production Of A Fuller, Deeper Tone In The Lower Register', 3, 85, 55, 0, '2023-09-14 09:22:56'),
+(5, 'Cornet Silver', '6502dac3cdc186.04450282.jpg', 522, 'Our Product Quality Attention We Believe That No Product Is Complete Without Putting It In To Practical Experience. This Is The Main Strength Of Our Products. All Our Products Like Trombone, Euphonium, Bugel Cooper, Trumpet, Pocket Cornet, Tenor Core, French Horn And Other Musical Instruments Are Well Accepted In The Market Mainly Because Of The Quality It Maintains All Through These Years.', 7, 566, 52, 0, '2023-09-14 10:04:51'),
+(6, 'Silver Bugle ', '6502dc1ea97af9.21505711.jpg', 4555, 'Silver Bugle Is Becoming A Most Demandable Instrument Nowadays, It Demand Increase In School Functions, Marriage Band, Government Sector Supply.', 8, 8666, 88, 0, '2023-09-14 10:10:38'),
+(7, 'Silver Mellophone', '6502ddd208c621.86215660.jpg', 255, 'Backed Ourselves With A Crew Of Dexterous Workers, We Are Readily Affianced In Providing A Distinctive Plethora Of Mellophone Horn Silver. In Conformism With The Advancement Taking Place In The Market, These Presented Products Are Developed With Utmost Excellence', 10, 755, 85, 0, '2023-09-14 10:17:54'),
+(8, 'Dilruba', '6502df13a8a6b7.96262589.jpg', 44, 'Special Type Dilruba Professional Type Generally Use By Raggis Wtth Adjustable Horse Hair Bow In Spl.fibre Box.available In 2 Colors.', 5, 45, 45, 0, '2023-09-14 10:23:15'),
+(9, 'Clarinet', '6502dfee71a746.26057193.jpg', 453, 'Special Type Clarinet Professional Type Generally Use By Raggis Wtth Adjustable Horse Hair Bow In Spl.fibre Box.available In 2 Colors.', 6, 455, 56, 0, '2023-09-14 10:26:54'),
+(10, 'Dhol', '6502e0b2698f69.38231184.jpg', 355, 'Dhol', 11, 455, 455, 0, '2023-09-14 10:30:10'),
+(11, 'Euphonium', '6502e129805435.97404295.jpg', 755, 'Euphonium', 9, 855, 455, 0, '2023-09-14 10:32:09');
 
 -- --------------------------------------------------------
 
@@ -233,64 +265,17 @@ CREATE TABLE `product_images` (
 --
 
 INSERT INTO `product_images` (`image_id`, `product_id`, `image_path`, `is_deleted`, `time_stamp`) VALUES
-(1, 1, '64e0736421eaf5.46873124.jpg', 0, '2023-08-19 07:46:44'),
-(2, 1, '64e0736423a0f4.16333210.jpg', 0, '2023-08-19 07:46:44'),
-(3, 1, '64e073642557e5.19567073.jpg', 0, '2023-08-19 07:46:44'),
-(4, 1, '64e073642861f5.53513914.jpg', 0, '2023-08-19 07:46:44'),
-(5, 2, '64e0831ed62ce6.99981228.jpg', 0, '2023-08-19 08:53:50'),
-(6, 2, '64e0831ed7dbc1.86016188.jpg', 0, '2023-08-19 08:53:50'),
-(7, 2, '64e0831edd18b2.31331138.jpg', 0, '2023-08-19 08:53:50'),
-(8, 2, '64e0831ee47e98.26149806.jpg', 0, '2023-08-19 08:53:50'),
-(9, 2, '64e0831eee40d3.98868723.jpg', 0, '2023-08-19 08:53:50'),
-(10, 3, '64e08c25a90999.99205340.jpg', 0, '2023-08-19 09:32:21'),
-(11, 3, '64e08c25ab3c88.82808190.jpg', 0, '2023-08-19 09:32:21'),
-(12, 3, '64e08c25accea3.88930104.jpg', 0, '2023-08-19 09:32:21'),
-(13, 3, '64e08c25b5e9d5.99843501.jpg', 0, '2023-08-19 09:32:21'),
-(14, 3, '64e08c25b93497.30421195.jpg', 0, '2023-08-19 09:32:21'),
-(15, 4, '64e09fbdd082a5.43366308.jpg', 0, '2023-08-19 10:55:57'),
-(16, 4, '64e09fbdd37fd0.77284850.jpg', 0, '2023-08-19 10:55:57'),
-(17, 4, '64e09fbdd61eb3.76885163.jpg', 0, '2023-08-19 10:55:57'),
-(18, 4, '64e09fbdd79ed8.11032782.jpg', 0, '2023-08-19 10:55:57'),
-(19, 4, '64e09fbdd90611.99683632.jpg', 0, '2023-08-19 10:55:57'),
-(20, 5, '64e0a5b5be3964.55835264.jpg', 0, '2023-08-19 11:21:25'),
-(21, 5, '64e0a5b5c087d8.46331564.jpg', 0, '2023-08-19 11:21:25'),
-(22, 5, '64e0a5b5c21a41.13916496.jpg', 0, '2023-08-19 11:21:25'),
-(23, 5, '64e0a5b5c3ba20.34049534.jpg', 0, '2023-08-19 11:21:25'),
-(24, 5, '64e0a5b5c58043.70045079.jpg', 0, '2023-08-19 11:21:25'),
-(25, 5, '64e0a5b5c6e906.57241410.jpg', 0, '2023-08-19 11:21:25'),
-(26, 6, '64e0a8b7281993.97294723.jpg', 0, '2023-08-19 11:34:15'),
-(27, 6, '64e0a8b729a601.06169213.jpg', 0, '2023-08-19 11:34:15'),
-(28, 6, '64e0a8b72af359.44380483.jpg', 0, '2023-08-19 11:34:15'),
-(29, 6, '64e0a8b72c5c27.05934284.jpg', 0, '2023-08-19 11:34:15'),
-(30, 6, '64e0a8b72df735.68029350.jpg', 0, '2023-08-19 11:34:15'),
-(31, 7, '64e0ae2b45a868.59393845.jpg', 0, '2023-08-19 11:57:31'),
-(32, 7, '64e0ae2b476a59.05863025.jpg', 0, '2023-08-19 11:57:31'),
-(33, 7, '64e0ae2b48f5f8.53544532.jpg', 0, '2023-08-19 11:57:31'),
-(34, 7, '64e0ae2b4a4da5.75686373.jpg', 0, '2023-08-19 11:57:31'),
-(35, 7, '64e0ae2b4bd4a5.21098904.jpg', 0, '2023-08-19 11:57:31'),
-(36, 8, '64e0afdf5116a7.08606470.jpg', 0, '2023-08-19 12:04:47'),
-(37, 8, '64e0afdf528d25.06027401.jpg', 0, '2023-08-19 12:04:47'),
-(38, 8, '64e0afdf53f884.21262079.jpg', 0, '2023-08-19 12:04:47'),
-(39, 8, '64e0afdf555f45.60836480.jpg', 0, '2023-08-19 12:04:47'),
-(40, 8, '64e0afdf56f9c6.24686286.jpg', 0, '2023-08-19 12:04:47'),
-(41, 9, '64e0b143d13b10.53332095.jpg', 0, '2023-08-19 12:10:43'),
-(42, 9, '64e0b143d32447.79707007.jpg', 0, '2023-08-19 12:10:43'),
-(43, 9, '64e0b143d49500.86005150.jpg', 0, '2023-08-19 12:10:43'),
-(44, 10, '64e0b2c5e9a6f0.61462805.jpg', 0, '2023-08-19 12:17:09'),
-(45, 10, '64e0b2c5ec6211.53198081.jpg', 0, '2023-08-19 12:17:09'),
-(46, 10, '64e0b2c5edb6b8.96029684.jpg', 0, '2023-08-19 12:17:09'),
-(47, 10, '64e0b2c5f0a0c7.15872209.jpg', 0, '2023-08-19 12:17:09'),
-(48, 10, '64e0b2c5f21681.78603792.jpg', 0, '2023-08-19 12:17:09'),
-(49, 11, '64e0b3b6118988.76784402.jpg', 0, '2023-08-19 12:21:10'),
-(50, 11, '64e0b3b612e993.74278965.jpg', 0, '2023-08-19 12:21:10'),
-(51, 11, '64e0b3b6145fe0.12314841.jpg', 0, '2023-08-19 12:21:10'),
-(52, 11, '64e0b3b615bb67.78381409.jpg', 0, '2023-08-19 12:21:10'),
-(53, 12, '64e0b5781b9c58.12791192.jpg', 0, '2023-08-19 12:28:40'),
-(54, 12, '64e0b5781cfa00.45217849.jpg', 0, '2023-08-19 12:28:40'),
-(55, 12, '64e0b5781e7d58.93857291.jpg', 0, '2023-08-19 12:28:40'),
-(56, 12, '64e0b578200b10.79586595.jpg', 0, '2023-08-19 12:28:40'),
-(57, 12, '64e0b5782181d6.44187061.jpg', 0, '2023-08-19 12:28:40'),
-(58, 12, '64e0b578230131.50371963.jpg', 0, '2023-08-19 12:28:40');
+(1, 1, '6502cf1b432662.52969414.jpg', 0, '2023-09-14 09:15:07'),
+(2, 2, '6502cfb4aeb675.22228709.jpg', 0, '2023-09-14 09:17:40'),
+(3, 3, '6502d054d4ff67.89195430.jpg', 0, '2023-09-14 09:20:20'),
+(4, 4, '6502d0f06da409.39737222.jpg', 0, '2023-09-14 09:22:56'),
+(5, 5, '6502dac3cf35c7.20700328.jpg', 0, '2023-09-14 10:04:51'),
+(6, 6, '6502dc1eac6971.94334281.jpg', 0, '2023-09-14 10:10:38'),
+(7, 7, '6502ddd20b6957.28706296.jpg', 0, '2023-09-14 10:17:54'),
+(8, 8, '6502df13acf676.37706150.jpg', 0, '2023-09-14 10:23:15'),
+(9, 9, '6502dfee737dd4.91985963.jpg', 0, '2023-09-14 10:26:54'),
+(10, 10, '6502e0b26aa339.10974922.jpg', 0, '2023-09-14 10:30:10'),
+(11, 11, '6502e12980ed72.90812146.jpg', 0, '2023-09-14 10:32:09');
 
 -- --------------------------------------------------------
 
@@ -329,63 +314,43 @@ CREATE TABLE `specifications` (
 --
 
 INSERT INTO `specifications` (`specification_id`, `product_id`, `name`, `value`, `is_deleted`, `timestamp`) VALUES
-(1, 1, 'Material Type', 'Brass', 0, '2023-08-19 07:46:44'),
-(2, 1, 'Instrument Key', 'BB', 0, '2023-08-19 07:46:44'),
-(3, 1, 'Size', 'BELL DIAMETER: 4 inches.', 0, '2023-08-19 07:46:44'),
-(4, 2, 'Mounting Hardware', '‎Case', 0, '2023-08-19 08:53:50'),
-(5, 2, 'Batteries Required', '‎No', 0, '2023-08-19 08:53:50'),
-(6, 2, 'Material', 'Silver', 0, '2023-08-19 08:53:50'),
-(7, 3, 'Color Name', 'Nickel', 0, '2023-08-19 09:32:21'),
-(8, 3, 'Material Type', 'Brass, Nickel', 0, '2023-08-19 09:32:21'),
-(9, 3, 'Style', 'Mouthpiece, Flat', 0, '2023-08-19 09:32:21'),
-(10, 3, 'Finish Type', 'Polished', 0, '2023-08-19 09:32:21'),
-(11, 4, '', '', 0, '2023-08-19 10:55:57'),
-(12, 5, 'Production Capacity', '500', 0, '2023-08-19 11:21:25'),
-(13, 5, 'Valve', '7.5 INCHES', 0, '2023-08-19 11:21:25'),
-(14, 5, 'Feature', 'MUSICAL BANDS', 0, '2023-08-19 11:21:25'),
-(15, 5, 'Application', 'MUSICAL FUNCTIONS', 0, '2023-08-19 11:21:25'),
-(16, 5, 'Usage', 'IDEAL FOR FUNCTIONS', 0, '2023-08-19 11:21:25'),
-(17, 5, 'Bell Diameter', '7.5 inch', 0, '2023-08-19 11:21:25'),
-(18, 6, 'Type Of Instruments	', 'Trumpet', 0, '2023-08-19 11:34:15'),
-(19, 6, 'Material', 'Brass', 0, '2023-08-19 11:34:15'),
-(20, 6, 'Type', 'Brass', 0, '2023-08-19 11:34:15'),
-(21, 6, 'Color', 'Golden', 0, '2023-08-19 11:34:15'),
-(22, 6, 'Packaging Type	', 'Hard Case', 0, '2023-08-19 11:34:15'),
-(23, 6, 'Weight', '4 to 5 kg', 0, '2023-08-19 11:34:15'),
-(24, 7, 'Material	', 'Brass', 0, '2023-08-19 11:57:31'),
-(25, 7, 'Color', 'Silver', 0, '2023-08-19 11:57:31'),
-(26, 7, 'Weight', '4 to 5 kg', 0, '2023-08-19 11:57:31'),
-(27, 7, 'Surface Finish	', 'Nickel Polished', 0, '2023-08-19 11:57:31'),
-(28, 7, 'Packaging Type	', 'Box', 0, '2023-08-19 11:57:31'),
-(29, 8, 'Material', 'Silver', 0, '2023-08-19 12:04:47'),
-(30, 8, 'Color	', 'Silver', 0, '2023-08-19 12:04:47'),
-(31, 8, 'Weight	', '3 Kg', 0, '2023-08-19 12:04:47'),
-(32, 8, 'Surface Finish	', 'Nickel Plated', 0, '2023-08-19 12:04:47'),
-(33, 8, 'Packaging Type	', 'Box', 0, '2023-08-19 12:04:47'),
-(34, 9, 'Material', 'Silver', 0, '2023-08-19 12:10:43'),
-(35, 9, 'Color	', 'Silver', 0, '2023-08-19 12:10:43'),
-(36, 9, 'Packaging Type	', 'Box', 0, '2023-08-19 12:10:43'),
-(37, 9, 'Weight	', '3 Kg', 0, '2023-08-19 12:10:43'),
-(38, 9, 'Surface Finish	', 'Nickel Plated', 0, '2023-08-19 12:10:43'),
-(39, 9, 'Country Of Origin', 'India', 0, '2023-08-19 12:10:43'),
-(40, 10, 'Material', 'Silver', 0, '2023-08-19 12:17:09'),
-(41, 10, 'Type Of Instruments	', 'Trumpet', 0, '2023-08-19 12:17:09'),
-(42, 10, 'Color', 'Golden', 0, '2023-08-19 12:17:09'),
-(43, 10, 'Packaging Type	', 'Hard Case', 0, '2023-08-19 12:17:09'),
-(44, 10, 'Country Of Origin', 'India', 0, '2023-08-19 12:17:09'),
-(45, 10, 'Usage', 'Schools , Army And Police Band, etc.', 0, '2023-08-19 12:17:09'),
-(46, 11, 'Width', '45 cm', 0, '2023-08-19 12:21:10'),
-(47, 11, 'Type', 'Electric Guitars', 0, '2023-08-19 12:21:10'),
-(48, 11, 'Performance Level	', 'Intermediate', 0, '2023-08-19 12:21:10'),
-(49, 11, 'Color', 'Multicolor', 0, '2023-08-19 12:21:10'),
-(50, 11, 'Material', 'Wooden', 0, '2023-08-19 12:21:10'),
-(51, 11, 'No Of Strings	', '6', 0, '2023-08-19 12:21:10'),
-(52, 12, 'Size', 'Standard', 0, '2023-08-19 12:28:40'),
-(53, 12, 'Weight', 'Less than 1kg aprrox', 0, '2023-08-19 12:28:40'),
-(54, 12, 'Usage/Application	', 'Musical Function', 0, '2023-08-19 12:28:40'),
-(55, 12, 'Material', 'Wooden', 0, '2023-08-19 12:28:40'),
-(56, 12, 'Color	', 'Multicolor', 0, '2023-08-19 12:28:40'),
-(57, 12, 'Number Of Stop Knobs	', '18', 0, '2023-08-19 12:28:40');
+(1, 1, ' Color', 'Nickel', 0, '2023-09-14 09:15:07'),
+(2, 1, 'Material Type', 'Brass, Nickel', 0, '2023-09-14 09:15:07'),
+(3, 1, 'Style', 'Mouthpiece, Flat', 0, '2023-09-14 09:15:07'),
+(4, 1, 'Finish Type', 'Polished', 0, '2023-09-14 09:15:07'),
+(5, 2, 'Material Type', 'Brass', 0, '2023-09-14 09:17:40'),
+(6, 2, 'Instrument Key', 'BB', 0, '2023-09-14 09:17:40'),
+(7, 2, 'Size', 'BELL DIAMETER: 4 inches.', 0, '2023-09-14 09:17:40'),
+(8, 4, 'Valve', '7.5 INCHES', 0, '2023-09-14 09:22:56'),
+(9, 4, 'Feature', 'MUSICAL BANDS', 0, '2023-09-14 09:22:56'),
+(10, 4, 'Application', 'MUSICAL FUNCTIONS', 0, '2023-09-14 09:22:56'),
+(11, 4, 'Usage', 'IDEAL FOR FUNCTIONS', 0, '2023-09-14 09:22:56'),
+(12, 4, 'Bell Diameter	', '7.5 inch', 0, '2023-09-14 09:22:56'),
+(13, 5, 'Mounting Hardware', 'Case', 0, '2023-09-14 10:04:51'),
+(14, 5, 'Batteries Required', 'No', 0, '2023-09-14 10:04:51'),
+(15, 5, 'Material', 'Silver', 0, '2023-09-14 10:04:51'),
+(16, 6, 'Material', 'Brass', 0, '2023-09-14 10:10:38'),
+(17, 6, 'Color', 'Silver', 0, '2023-09-14 10:10:38'),
+(18, 6, 'Weight', '4 to 5 kg', 0, '2023-09-14 10:10:38'),
+(19, 6, 'Surface Finish', 'Nickel Polished', 0, '2023-09-14 10:10:38'),
+(20, 6, 'Packaging Type', 'Box', 0, '2023-09-14 10:10:38'),
+(21, 7, 'Material', 'Silver', 0, '2023-09-14 10:17:54'),
+(22, 7, 'Color', 'Silver', 0, '2023-09-14 10:17:54'),
+(23, 7, 'Packaging Type', 'Box', 0, '2023-09-14 10:17:54'),
+(24, 7, 'Weight', '3 Kg', 0, '2023-09-14 10:17:54'),
+(25, 7, 'Surface Finish', 'Nickel Plated', 0, '2023-09-14 10:17:54'),
+(26, 7, 'Country Of Origin', 'India', 0, '2023-09-14 10:17:54'),
+(27, 8, 'Width', '45 cm', 0, '2023-09-14 10:23:15'),
+(28, 8, 'Type', 'Electric Guitars', 0, '2023-09-14 10:23:15'),
+(30, 8, 'Performance Level', 'Intermediate', 0, '2023-09-14 10:23:15'),
+(31, 8, 'Color', 'Multicolor', 0, '2023-09-14 10:23:15'),
+(32, 8, 'Material', 'Wooden', 0, '2023-09-14 10:23:15'),
+(33, 8, 'No Of Strings', '6', 0, '2023-09-14 10:23:15'),
+(34, 9, 'Material', 'Wooden', 0, '2023-09-14 10:26:54'),
+(35, 9, 'Performance Level', 'Intermediate', 0, '2023-09-14 10:26:54'),
+(36, 9, 'Color', 'Multicolor', 0, '2023-09-14 10:26:54'),
+(37, 10, 'Material', 'Steel', 0, '2023-09-14 10:30:10'),
+(38, 10, 'Color', 'White', 0, '2023-09-14 10:30:10');
 
 -- --------------------------------------------------------
 
@@ -407,22 +372,17 @@ CREATE TABLE `sub_category` (
 --
 
 INSERT INTO `sub_category` (`sub_category_id`, `name`, `sub_category_image`, `category_id`, `is_deleted`, `timestamp`) VALUES
-(1, 'bugle', '64e08c25accea3.88930104.jpg', 1, 0, '2023-08-19 07:13:55'),
-(2, 'flugel', '64e08c25accea3.88930104.jpg', 1, 0, '2023-08-19 07:14:03'),
-(3, 'trombone', '64e08c25accea3.88930104.jpg', 1, 0, '2023-08-19 07:14:10'),
-(4, 'trumpet', '64e08c25accea3.88930104.jpg', 1, 0, '2023-08-19 07:14:19'),
-(5, 'trumpet-bb', '64e08c25accea3.88930104.jpg', 1, 0, '2023-08-19 07:14:29'),
-(6, 'baritone', '64e08c25accea3.88930104.jpg', 2, 0, '2023-08-19 07:19:07'),
-(7, 'bugle', '64e08c25accea3.88930104.jpg', 2, 0, '2023-08-19 07:19:20'),
-(8, 'Euphonium', '64e08c25accea3.88930104.jpg', 2, 0, '2023-08-19 07:19:27'),
-(9, 'euphonium', '64e08c25accea3.88930104.jpg', 2, 1, '2023-08-19 07:19:35'),
-(10, 'mellophone', '64e08c25accea3.88930104.jpg', 2, 0, '2023-08-19 07:19:43'),
-(11, 'pocket trumpet', '64e08c25accea3.88930104.jpg', 2, 0, '2023-08-19 07:21:16'),
-(12, 'dilruba', '64e08c25accea3.88930104.jpg', 3, 0, '2023-08-19 07:22:54'),
-(13, 'Munda Sitar', '64e08c25accea3.88930104.jpg', 3, 0, '2023-08-19 07:23:07'),
-(14, 'sitar', '64e08c25accea3.88930104.jpg', 3, 0, '2023-08-19 07:23:21'),
-(15, 'clarinet', '64e08c25accea3.88930104.jpg', 3, 0, '2023-08-19 07:23:40'),
-(16, 'd flute', '64e08c25accea3.88930104.jpg', 3, 0, '2023-08-19 07:23:51');
+(1, 'Bugle', '6502b139932589.99493409.jpg', 1, 0, '2023-09-14 07:07:37'),
+(2, 'Flugel', '6502b1568b8526.36374678.jpg', 1, 0, '2023-09-14 07:08:06'),
+(3, 'Trombone', '6502b17b92fc21.06505533.jpg', 1, 0, '2023-09-14 07:08:43'),
+(4, 'Trumpet', '6502b1915ffd99.48128645.jpg', 1, 0, '2023-09-14 07:09:05'),
+(5, 'Sitar', '6502d771cd2631.46721945.jpg', 3, 0, '2023-09-14 09:50:41'),
+(6, 'Flute', '6502d77fd4eb19.49059931.jpg', 3, 0, '2023-09-14 09:50:55'),
+(7, 'Baritone', '6502d7b167c7f1.55486093.jpg', 2, 0, '2023-09-14 09:51:45'),
+(8, 'Bugle', '6502d7d57fd326.63491264.jpg', 2, 0, '2023-09-14 09:52:21'),
+(9, 'Euphonium', '6502d7f2967363.66664446.jpg', 2, 0, '2023-09-14 09:52:50'),
+(10, 'Mellophone', '6502d920111079.16755949.jpg', 2, 0, '2023-09-14 09:57:52'),
+(11, 'Dhol', '6502e04c6a03c2.75471774.jpg', 4, 0, '2023-09-14 10:28:28');
 
 -- --------------------------------------------------------
 
@@ -472,12 +432,12 @@ CREATE TABLE `wishlists` (
 --
 
 INSERT INTO `wishlists` (`wishlist_id`, `user_id`, `product_id`, `is_deleted`, `timestamp`) VALUES
-(1, 17, 7, 0, '2023-08-19 13:02:44'),
-(2, 17, 5, 0, '2023-08-19 13:02:53'),
-(12, 23, 11, 0, '2023-09-14 05:13:22'),
-(13, 23, 1, 0, '2023-09-14 05:13:23'),
-(14, 23, 10, 0, '2023-09-14 05:13:25'),
-(15, 9, 9, 0, '2023-09-14 06:14:26');
+(1, 23, 4, 0, '2023-09-14 11:51:09'),
+(2, 23, 3, 0, '2023-09-14 11:51:12'),
+(4, 23, 2, 0, '2023-09-14 11:51:18'),
+(6, 9, 9, 0, '2023-09-14 12:37:17'),
+(7, 9, 1, 0, '2023-09-14 12:40:14'),
+(8, 23, 8, 0, '2023-09-16 04:40:57');
 
 --
 -- Indexes for dumped tables
@@ -589,19 +549,19 @@ ALTER TABLE `address`
 -- AUTO_INCREMENT for table `banners`
 --
 ALTER TABLE `banners`
-  MODIFY `banner_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `banner_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `contact_us`
@@ -613,19 +573,19 @@ ALTER TABLE `contact_us`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `product_images`
 --
 ALTER TABLE `product_images`
-  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `razorpay_record`
@@ -637,13 +597,13 @@ ALTER TABLE `razorpay_record`
 -- AUTO_INCREMENT for table `specifications`
 --
 ALTER TABLE `specifications`
-  MODIFY `specification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `specification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `sub_category`
 --
 ALTER TABLE `sub_category`
-  MODIFY `sub_category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `sub_category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -655,7 +615,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `wishlists`
 --
 ALTER TABLE `wishlists`
-  MODIFY `wishlist_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `wishlist_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
