@@ -1,4 +1,9 @@
-<?php include('header.php'); ?>
+<?php 
+
+include('header.php');
+include('config.php');
+
+?>
 
         <!-- Start Page Banner -->
         <div class="page-banner-area item-bg3">
@@ -23,7 +28,7 @@
         <!-- Start Checkout Area -->
 		<section class="checkout-area ptb-100">
             <div class="container">
-                <form>
+                <form action="api/storeOrderDetails.php" method="post" id="pay-now-form">
                     <div class="row">
                         <div class="col-lg-6 col-md-12">
                             <div class="billing-details">
@@ -263,7 +268,7 @@
                                             ?>
                                             <tr>
                                                 <td class="product-name d-flex justify-content-between">
-                                                    <input type="hidden" value="<?= $row_for_product['product_id'] ?>" id="product-id">
+                                                    <input type="hidden" value="<?= $row_for_product['product_id'] ?>" id="product-id" name="product-id">
                                                     <a href="shop-details.php?pid=<?=$row_for_product['product_id']?>"><?= $row_for_product['product_name'] ?></a>
                                                     <span><?= $row['quantity'] ?>x</span>
                                                 </td>
@@ -291,10 +296,22 @@
                                     </table>
                                 </div>
 
-                                <div class="payment-box">
-                                    <div class="payment-method" id="paypal-button-container">
-                                        
-                                        
+                                <div class="agree-and-proceed mt-2">
+                                    <button class="default-btn" id="agree-proceed" style="cursor: pointer;  border: none;">Agree & Proceed</button>
+                                </div>
+
+                                <div class="payment-box" id="payment-btn-box" style="display: none;">
+                                    <div class="payment-method">
+                                        <script
+                                            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                            data-key="<?php echo $publishable_key ?>"
+                                            data-amount="<?= $row['total_price']*100 ?>"
+                                            data-name="Tapti Store"
+                                            data-description="Tapti Store E-commerce"
+                                            data-image="assets/img/logo.png"
+                                            data-currency="usd"
+                                        >
+                                        </script>
 
                                     </div>
                                     
@@ -309,7 +326,37 @@
         
         <?php include('footer.php'); ?>
 
-<!-- paypal cdn  -->
+<script>
+
+$(document).ready(function(){
+
+    $(document).on('click', '#agree-proceed', function(e){
+        e.preventDefault();
+        let address_id=$('input[name="address-id"]:checked').val();
+        let product_id=$('#product-id').val();
+        if($('input[name="address-id"]:checked').length === 0)
+        {
+            alert("Please Select Address");
+            return false;
+        }
+        else if(product_id=='')
+        {
+            alert("Something went wrong Please refresh the page");
+            return false;
+        }
+        else
+        {
+            $('.agree-and-proceed').css('display', 'none');
+            $('#payment-btn-box').css('display', 'flex');
+            console.log('click payment');
+        }
+    });
+    
+});
+
+</script>
+
+<!-- paypal cdn 
 <script src="https://www.paypal.com/sdk/js?client-id=AWaGDsNdWv7up26-Slro1Tqk3jkZCuz5ed6uRGb30pSmlaEJk7V-JPJPNmqx_d4crrALPB2Zr6Xm88T6"></script>
 
 <script>
@@ -373,4 +420,4 @@ paypal.Buttons({
     },
   }).render("#paypal-button-container");
 
-</script>
+</script> -->

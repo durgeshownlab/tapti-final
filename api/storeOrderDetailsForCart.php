@@ -2,6 +2,7 @@
 
 session_start();
 include("../config/config.php");
+include("../config.php");
 
 //Import PHPMailer classes into the global namespace
 use PHPMailer\PHPMailer\PHPMailer;
@@ -9,11 +10,10 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 
-$address_id= $_POST['address_id'];
+$address_id= $_POST['address-id'];
 $user_id=$_SESSION['user_id'];
 
 
-$transaction_id=$_POST['transaction_id'];
 
 $total_price=0;
 
@@ -40,37 +40,56 @@ $payment_method='online';
 $payment_status='success';
 $delivery_status='order placed';
 
-$status=true;
-for($i=0; $i<count($productDetails); $i++)
+if(isset($_POST['stripeToken']))
 {
-    $custom_order_id= time().'' . bin2hex(random_bytes(4));
+    \Stripe\Stripe::setVerifySslCerts(false);
+    $token=$_POST['stripeToken'];
 
-        // code for order  event start from the order placed
-    date_default_timezone_set("Asia/kolkata");
+    $data=\Stripe\Charge::create(array(
+        "amount"=>$total_price*100,
+        "currency"=>"usd",
+        "description"=>"Programming ",
+        "source"=>$token,
+    ));
 
-        $order_event_data = [
-        [
-            'event_name' => 'order placed',
-            'Date' => date('d-m-Y'),
-            'Time' => date('H:i:s')
-        ]
-    ];
+    
+}
 
-    $json_order_event_data = json_encode($order_event_data);
-
-    $sql="INSERT INTO orders (order_id, user_id, product_id, address_id, transaction_id, quantity, price_single_unit, total_price, payment_method, payment_status, delivery_status, order_event) VALUES ('{$custom_order_id}', {$user_id}, {$productDetails[$i]['product_id']}, {$address_id}, '{$transaction_id}', {$productDetails[$i]['quantity']}, {$productDetails[$i]['price_single_unit']}, {$productDetails[$i]['total_price']}, '{$payment_method}', '{$payment_status}', '{$delivery_status}', '{$json_order_event_data}')";
-
-    $result=mysqli_query($con, $sql);
-    if($result)
+if(isset($data['balance_transaction']) && isset($data['captured']) && $data['captured']==1 )
+{
+    $transaction_id=$data['balance_transaction'];
+    $status=true;
+    for($i=0; $i<count($productDetails); $i++)
     {
-        $productDetails[$i]['order_id']=$custom_order_id;
-        $status=true;
-    }
-    else
-    {
-        $status=false;
-        echo 0;
-        exit;
+        $custom_order_id= time().'' . bin2hex(random_bytes(4));
+
+            // code for order  event start from the order placed
+        date_default_timezone_set("Asia/kolkata");
+
+            $order_event_data = [
+            [
+                'event_name' => 'order placed',
+                'Date' => date('d-m-Y'),
+                'Time' => date('H:i:s')
+            ]
+        ];
+
+        $json_order_event_data = json_encode($order_event_data);
+
+        $sql="INSERT INTO orders (order_id, user_id, product_id, address_id, transaction_id, quantity, price_single_unit, total_price, payment_method, payment_status, delivery_status, order_event) VALUES ('{$custom_order_id}', {$user_id}, {$productDetails[$i]['product_id']}, {$address_id}, '{$transaction_id}', {$productDetails[$i]['quantity']}, {$productDetails[$i]['price_single_unit']}, {$productDetails[$i]['total_price']}, '{$payment_method}', '{$payment_status}', '{$delivery_status}', '{$json_order_event_data}')";
+
+        $result=mysqli_query($con, $sql);
+        if($result)
+        {
+            $productDetails[$i]['order_id']=$custom_order_id;
+            $status=true;
+        }
+        else
+        {
+            $status=false;
+            echo 0;
+            exit;
+        }
     }
 }
 
@@ -167,11 +186,13 @@ if($status)
                 // echo "<script>console.log('Message could not be sent. Mailer Error: {$mail->ErrorInfo}');";
             }
             
-        $response=[
-            'status'    =>  1,
-            'data'      =>  $productDetails
-        ];
-        echo json_encode($response);
+        // $response=[
+        //     'status'    =>  1,
+        //     'data'      =>  $productDetails
+        // ];
+
+        echo "<script>window.location.href = '../successForCart.php?data=".base64_encode(json_encode($productDetails))."';  </script>";
+        //  json_encode($response);
     }
 }
 else

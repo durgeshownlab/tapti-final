@@ -1,4 +1,8 @@
-<?php include('header.php'); ?>
+<?php 
+include('header.php');
+include('config.php');
+
+?>
 
         <!-- Start Page Banner -->
         <div class="page-banner-area item-bg3">
@@ -23,7 +27,7 @@
         <!-- Start Checkout Area -->
 		<section class="checkout-area ptb-100">
             <div class="container">
-                <form>
+                <form action="api/storeOrderDetailsForCart.php" method="post" id="pay-now-form">
                     <div class="row">
                         <div class="col-lg-6 col-md-12">
                             <div class="billing-details">
@@ -227,99 +231,6 @@
 
                         ?>
 
-                                    <!-- <div class="col-lg-12 col-md-12">
-                                        <div class="form-group">
-                                            <input type="radio" id="cash-on-delivery" name="radio-group">
-                                            <label for="cash-on-delivery">Cash on Delivery</label>
-                                        </div>
-                                    </div> -->
-
-                                    <!-- <div class="col-lg-12 col-md-12">
-                                        <div class="form-group">
-										    <label>Country <span class="required">*</span></label>
-                                            <div class="select-box">
-                                                <select class="form-control">
-                                                    <option value="5">United Arab Emirates</option>
-                                                    <option value="1">China</option>
-                                                    <option value="2">United Kingdom</option>
-                                                    <option value="0">Germany</option>
-                                                    <option value="3">France</option>
-                                                    <option value="4">Japan</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6">
-                                        <div class="form-group">
-                                            <label>First Name <span class="required">*</span></label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6">
-                                        <div class="form-group">
-                                            <label>Last Name <span class="required">*</span></label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12">
-                                        <div class="form-group">
-                                            <label>Company Name</label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-6">
-                                        <div class="form-group">
-                                            <label>Address <span class="required">*</span></label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-6">
-                                        <div class="form-group">
-                                            <label>Town / City <span class="required">*</span></label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6">
-                                        <div class="form-group">
-                                            <label>State / County <span class="required">*</span></label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6">
-                                        <div class="form-group">
-                                            <label>Postcode / Zip <span class="required">*</span></label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6">
-                                        <div class="form-group">
-                                            <label>Email Address<span class="required">*</span></label>
-                                            <input type="email" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6">
-                                        <div class="form-group">
-                                            <label>Phone <span class="required">*</span></label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12">
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="create-an-account">
-                                            <label class="form-check-label" for="create-an-account">Create an account?</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12">
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="ship-different-address">
-                                            <label class="form-check-label" for="ship-different-address">Ship to a different address?</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12">
-                                        <div class="form-group">
-                                            <textarea name="notes" id="notes" cols="30" rows="5" placeholder="Order Notes" class="form-control"></textarea>
-                                        </div>
-                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -391,11 +302,32 @@
                                     </table>
                                 </div>
 
-                                <div class="payment-box">
+                                <div class="agree-and-proceed mt-2">
+                                    <button class="default-btn" id="agree-proceed" style="cursor: pointer;  border: none;">Agree & Proceed</button>
+                                </div>
+
+                                <div class="payment-box" id="payment-btn-box" style="display: none;">
+                                    <div class="payment-method">
+                                        <script
+                                            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                            data-key="<?php echo $publishable_key ?>"
+                                            data-amount="<?= $total_price * 100 ?>"
+                                            data-name="Tapti Store"
+                                            data-description="Tapti Store E-commerce"
+                                            data-image="assets/img/logo.png"
+                                            data-currency="usd"
+                                        >
+                                        </script>
+
+                                    </div>
+                                    
+                                </div>
+
+                                <!-- <div class="payment-box">
                                     <div class="payment-method" id="paypal-button-container">
                                         
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -406,11 +338,41 @@
         
         <?php include('footer.php'); ?>
 
-        
-<!-- paypal cdn  -->
-<script src="https://www.paypal.com/sdk/js?client-id=AWaGDsNdWv7up26-Slro1Tqk3jkZCuz5ed6uRGb30pSmlaEJk7V-JPJPNmqx_d4crrALPB2Zr6Xm88T6"></script>
 
 <script>
+
+$(document).ready(function(){
+    $(document).on('click', '#agree-proceed', function(e){
+        e.preventDefault();
+        let address_id=$('input[name="address-id"]:checked').val();
+        // let product_id=$('#product-id').val();
+        if($('input[name="address-id"]:checked').length === 0)
+        {
+            alert("Please Select Address");
+            return false;
+        }
+        // else if(product_id=='')
+        // {
+        //     alert("Something went wrong Please refresh the page");
+        //     return false;
+        // }
+        else
+        {
+            $('.agree-and-proceed').css('display', 'none');
+            $('#payment-btn-box').css('display', 'flex');
+            console.log('click payment');
+        }
+    });
+    
+});
+
+</script>
+
+        
+<!-- paypal cdn  -->
+<!-- <script src="https://www.paypal.com/sdk/js?client-id=AWaGDsNdWv7up26-Slro1Tqk3jkZCuz5ed6uRGb30pSmlaEJk7V-JPJPNmqx_d4crrALPB2Zr6Xm88T6"></script> -->
+
+<!-- <script>
 
 paypal.Buttons({
     onClick()
@@ -473,5 +435,5 @@ paypal.Buttons({
     },
   }).render("#paypal-button-container");
 
-</script>
+</script> -->
 
